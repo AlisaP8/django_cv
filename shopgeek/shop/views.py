@@ -35,5 +35,5 @@ def return_extra():
 def get_page(request):
     return render(request, 'index.html', context={
         'object_list': Warehouse.objects.all(),
-        'user': return_extra()
+        'product': return_extra(),
     })
