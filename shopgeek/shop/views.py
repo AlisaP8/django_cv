@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from .models import Warehouse
+from .models import Warehouse, Phone, Headphones
 
 
 class ProductListView(ListView):
@@ -21,6 +21,18 @@ class WarehouseListView(ProductListView):
     model = Warehouse
     queryset = Warehouse.objects.all()
     template_name = 'index.html'
+
+
+class PhoneListView(ProductListView):
+    model = Phone
+    queryset = Phone.objects.select_related('model').all()
+    template_name = 'phone.html'
+
+
+class HeadphonesListView(ProductListView):
+    model = Headphones
+    queryset = Headphones.objects.prefetch_related('new_model').all()
+    template_name = 'headphones.html'
 
 
 def return_extra():

@@ -7,3 +7,6 @@ class Warehouse(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=10, default=0, verbose_name='цена')
     quantity = models.PositiveSmallIntegerField(default=0, verbose_name='единица измерения')
     vendor_name = models.CharField(max_length=250, verbose_name='имя поставщика')
+
+    def __str__(self):
+        return f'{self.name}{self.price}'
