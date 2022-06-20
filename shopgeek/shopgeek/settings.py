@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 # from hitcount.middleware import hit_count_middleware
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
