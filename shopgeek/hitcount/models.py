@@ -1,4 +1,7 @@
 from django.db import models
+from django.dispatch import Signal, receiver
+
+some_signal = Signal()
 
 
 class HitCount(models.Model):
@@ -7,3 +10,12 @@ class HitCount(models.Model):
 
     def __str__(self):
         return f'{self.path} ({self.hits})'
+
+    def save(self, *args, **kwargs):
+        some_signal.send(self, test=1)
+        return super().save(*args, **kwargs)
+
+
+@receiver(some_signal)
+def post_save_hit(sender, *args, **kwargs):
+    print(sender)

@@ -1,3 +1,4 @@
+from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Warehouse, Phone, Headphones
@@ -27,6 +28,19 @@ class PhoneListView(ProductListView):
     model = Phone
     queryset = Phone.objects.select_related('model').all()
     template_name = 'phone.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context.update({
+            'product': {'name': 'Phone',
+                        'receipt_date': '17.06.2022',
+                        'price': '30000р',
+                        'quantity': 'шт',
+                        'vendor_name': 'MVid',
+                        },
+            'site': get_current_site(request=self.request),
+        })
+        return context
 
 
 class HeadphonesListView(ProductListView):

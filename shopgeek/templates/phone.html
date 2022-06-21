@@ -6,11 +6,18 @@
 </head>
 <body>
 <div>
+    {{site.name}}
+</div>
+<div>
     {{product.name}} {{product.receipt_date}} {{product.price}} {{product.quantity}} {{product.vendor_name}}
 </div>
 {% for object in object_list %}
     <div>
-        {{object.descriptions}} {{object.model.name}} {{object.model.price}}
+        {{object.site.name}}
+        {{object.desc}}
+        {% for model in object.new_model.all %}
+            {{model.name}} {{model.price}}
+        {% endfor %}
     </div>
 {% endfor %}
 </body>

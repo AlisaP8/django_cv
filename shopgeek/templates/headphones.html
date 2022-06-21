@@ -10,11 +10,7 @@
 </div>
 {% for object in object_list %}
     <div>
-        {{object.desc}}
-        {% for model in object.new_model.all %}
-
-            {{model.name}} {{model.price}}
-        {% endfor %}
+        {{object.descriptions}} {{object.model.name}} {{object.model.price}}
     </div>
 {% endfor %}
 </body>
