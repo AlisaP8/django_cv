@@ -26,7 +26,7 @@ class WarehouseListView(ProductListView):
 
 class PhoneListView(ProductListView):
     model = Phone
-    queryset = Phone.objects.select_related('model').all()
+    queryset = Phone.on_site.prefetch_related('new_model').all()
     template_name = 'phone.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -45,7 +45,7 @@ class PhoneListView(ProductListView):
 
 class HeadphonesListView(ProductListView):
     model = Headphones
-    queryset = Headphones.objects.prefetch_related('new_model').all()
+    queryset = Headphones.objects.select_related('model').all()
     template_name = 'headphones.html'
 
 
