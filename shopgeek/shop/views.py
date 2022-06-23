@@ -45,7 +45,7 @@ class PhoneListView(ProductListView):
 
 class HeadphonesListView(ProductListView):
     model = Headphones
-    queryset = Headphones.objects.select_related('model').all()
+    queryset = Headphones.objects.not_deleted().select_related('model').all()
     template_name = 'headphones.html'
 
 
